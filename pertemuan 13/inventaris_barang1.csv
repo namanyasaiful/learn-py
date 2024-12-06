@@ -1,0 +1,23 @@
+dummy_data = [
+    ["Barang", "Jumlah"],
+    ["Kertas", "50"],
+    ["Pulpen", "100"],
+    ["Pensil", "75"],
+    ["Penghapus", "30"],
+    ["Stapler", "20"],
+    ["Amplop", "60"],
+    ["Spidol", "40"],
+    ["Papan Tulis", "15"],
+    ["Tinta Printer", "25"],
+    ["Laptop", "10"],
+    ["Mouse", "35"],
+    ["Keyboard", "20"],
+    ["Printer", "8"],
+    ["Scanner", "12"],
+    ["Kabel USB", "50"],
+    ["Monitor", "7"],
+    ["Flashdisk", "90"],
+    ["Proyektor", "5"],
+    ["Meja", "18"],
+    ["Kursi", "22"]
+]
