@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mencari negara</title>
+</head>
+<body>
+    <h1>Carilah Negara</h1>
+    <form id="countryForm">
+        <label for="country">Masukan nama negara:</label>
+        <input type="text" id="country" name="country" required>
+        <button type="submit">Cari</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("countryForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const countryName = document.getElementById("country").value;
+            const apiUrl = `https://restcountries.com/v3.1/name/${countryName}`;
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Country not found");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const country = data[0]; // Ambil data negara pertama
+                    const countryInfo = `
+                        <h2>Negara: ${country.name.common}</h2>
+                        <p><strong>Ibu Kota:</strong> ${country.capital ? country.capital[0] : "N/A"}</p>
+                        <p><strong>Kawasan:</strong> ${country.region}</p>
+                        <p><strong>Populasi:</strong> ${country.population.toLocaleString()}</p>
+                        <p><strong>Luas Negara:</strong> ${country.area.toLocaleString()} km²</p>
+                        <p><strong>Bendera:</strong></p>
+                        <img src="${country.flags.svg}" alt="Flag of ${country.name.common}" style="width: 150px; border: 1px solid #000;">
+                    `;
+                    document.getElementById("result").innerHTML = countryInfo;
+                })
+                .catch(error => {
+                    document.getElementById("result").innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+                });
+        });
+    </script>
+</body>
+</html>
